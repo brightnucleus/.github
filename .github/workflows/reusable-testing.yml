@@ -147,7 +147,7 @@ jobs:
         run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
       - name: Run PHPUnit
-        run: vendor/bin/phpunit --verbose --colors=always
+        run: vendor/bin/phpunit --verbose --colors=always --coverage-clover coverage.xml
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
