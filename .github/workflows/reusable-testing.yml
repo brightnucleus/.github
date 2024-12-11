@@ -18,7 +18,7 @@ concurrency:
 jobs:
   get-matrix:
     name: Get base test matrix
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.base-matrix.outputs.matrix }}
     steps:
@@ -66,6 +66,9 @@ jobs:
             },
             {
               "php": "8.3"
+            },
+            {
+              "php": "8.4"
             }
           ]
         }
@@ -76,7 +79,7 @@ jobs:
   prepare-unit:
     name: Prepare matrix for unit tests
     needs: get-matrix
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -108,7 +111,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.prepare-unit.outputs.matrix) }}
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Check out source code
